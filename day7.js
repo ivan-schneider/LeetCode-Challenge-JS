@@ -10,16 +10,28 @@ You may assume each function in the array accepts one integer as input and retur
 
 */
 
-
 /**
  * @param {Function[]} functions
  * @return {Function}
  */
+const fn1 = (x) => 2 * x;
+const fn2 = (x) => x + 1;
 
-var compose = function(functions) {
-	return function(x) {
-        functions(x){
-           let x = x;
-        }
+let functions = [fn1, fn2];
+
+let compose = function (functions) {
+  return function (x) {
+    for (const fn of functions.reverse) {
+      x = fn(x);
     }
+    return x;
+  };
 };
+
+// console.log(compose(functions));
+// // const fn0 = x;
+
+// const fn = compose([(x) => x + 1, (x) => 2 * x]);
+// fn(4); // 9
+
+// console.log(fn(4));
